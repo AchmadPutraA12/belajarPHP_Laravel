@@ -1,5 +1,8 @@
 <?php 
 $nama = "Achmad Putra Arifky";
+$tempatTanggalLahir = "Surabaya, 9 April 2002";
+$kampus = "ITATS Surabaya";
+$semester = 5;
 ?>
 
 <!DOCTYPE html>
@@ -55,8 +58,8 @@ $nama = "Achmad Putra Arifky";
           <br />
           <p>
             hallo, nama saya <? $nama ?> saya berasal dari Surabaya
-            Saya lahir pada 9 April 2002 saya berkuliah di kampus ITATS
-            Surabaya Mahasiswa Semester 5. saya juga menjabat sebagai asisten
+            tempat tanggal lahir saya adalah <?=$tempatTanggalLahir ?> saya berkuliah di kampus <?= $kampus ?> 
+            Mahasiswa Semester <?= $semester ?>. saya juga menjabat sebagai asisten
             lab RPL di kampus ITATS Surabaya. pada kesempatan mengikuti
             kegiatan kampus merdeka saya mendaftar di fullstack karena saya
             ingin mengembangkan rekayasa perangkat lunak saya terutama

@@ -1,3 +1,11 @@
+<?php
+$nama = "Achmad Putra Arifky";
+$instagram = "@mamadputra12";
+$linkedin = "www.linkedin.com/ahmad-arifki";
+$noWa = "0858-5009-3110";
+$github = "AchmadPutraA12";
+$email = "062021107398@mhs.itats.ac.id";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +55,7 @@
         <div class="text-center">
           <img alt="Bootstrap Image Preview" src="images/achmad.jpg" class="rounded-circle" />
           <br /><br />
-          <h3>Achmad Putra Arifky</h3>
+          <h3><?= $nama ?></h3>
           <br />
           <h5>Contact</h5>
         </div>
@@ -56,18 +64,18 @@
           <div class="col-md-6">
             <address>
               <strong>Instagram : </strong>
-              <a href="https://www.instagram.com/mamadputra12/" target="_blank">@mamadputra12</a>
+              <a href="https://www.instagram.com/mamadputra12/" target="_blank"><?= $instagram ?></a>
               <br />
               <strong>Linkedin : </strong>
-              <a href="https://www.linkedin.com/in/ahmad-arifki-15275724a/" target="_blank">www.linkedin.com/ahmad-arifki</a><br />
+              <a href="https://www.linkedin.com/in/ahmad-arifki-15275724a/" target="_blank"><?= $linkedin ?></a><br />
               <strong>No Whatsapp : </strong>
-              0858-5009-3110
+              <?= $noWa ?>
               <br />
               <strong>Github : </strong>
-              <a href="https://github.com/AchmadPutraA12" target="_blank">AchmadPutraA12</a>
+              <a href="https://github.com/AchmadPutraA12" target="_blank"><?= $github ?></a>
               <br />
               <strong>Email : </strong>
-              062021107398@mhs.itats.ac.id
+              <?= $email ?>
             </address>
           </div>
           <div class="col-md-3"></div>

@@ -1,3 +1,7 @@
+<?php 
+$nama = "Achmad Putra Arifky";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +51,7 @@
         <div class="text-center">
           <img alt="Bootstrap Image Preview" src="images/achmad.jpg" class="rounded-circle" />
           <br /><br />
-          <h3>Achmad Putra Arifky</h3>
+          <h3><?= $nama ?></h3>
           <br />
           <h5>Portofolio Saya</h5>
         </div>
