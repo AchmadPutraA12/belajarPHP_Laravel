@@ -49,7 +49,7 @@ $arrObjek = [$l1, $l2, $p1, $p2, $s1, $s2];
                         <tr>
                             <td><?= $no++?></td>
                             <td><?= $objek->namaBidang() ?></td>
-                            <td>Keliling <?= $objek->kelilingBidang() ?></td>
+                            <td><?= $objek->Keterangan() ?></td>
                             <td><?= $objek->luasBidang() ?></td>
                             <td><?= $objek->kelilingBidang()?></td>
                         </tr>

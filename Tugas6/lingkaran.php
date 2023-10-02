@@ -19,5 +19,9 @@ class Lingkaran extends Bentuk2D {
     public function luasBidang(){
         return 3.14 * $this->jari2 * $this->jari2;
     }
+
+    public function Keterangan(){
+        echo 'Jari - Jari : ' .$this->jari2;
+    }
 }
 ?>

@@ -19,5 +19,10 @@ class Segitiga extends Bentuk2D {
     public function luasBidang(){
         return 0.5 * $this->alas * $this->tinggi;
     }
+
+    public function Keterangan(){
+        echo 'Alas : ' .$this->alas;
+        echo '<br>Tinggi : ' .$this->tinggi;
+    }
 }
 ?>
