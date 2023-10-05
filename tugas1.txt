@@ -1,0 +1,30 @@
+//masuk ke DB melalui cmd
+mysql -u root
+
+//tampilkan database yang sudah dibuat
+SHOW DATABASES;
+
+//buat database baru:dbpegawai
+CREATE DATABASE dbpegawai;
+
+//masuk ke ruang database dbpegawai
+USE dbpegawai;
+
+//tampilkan tabel - tabel yang sudah ada di dbpegawai
+SHOW TABLES;
+
+//buat tabel pegawai field-field
+CREATE TABLE pegawai (
+    id INT PRIMARY KEY,
+    nip CHAR(5) NOT NULL UNIQUE,
+    nama VARCHAR(30) NOT NULL,
+    gender ENUM('L','P') NOT NULL,
+    umur INT NOT NULL,
+    berat_badan FLOAT
+);
+
+//tampilkan database yang sudah dibuat
+SHOW DATABASES;
+
+//lihat deskripsi tabel pegawai yang sudah dibuat
+DESC pegawai;
