@@ -1,0 +1,33 @@
+//buat table vendor
+CREATE TABLE vendor (
+    nomor int PRIMARY KEY AUTO_INCREMENT,
+    nama varchar(50),
+    kota varchar(50),
+    kontak int(12)
+);
+
+//buat table pembelian
+CREATE TABLE pembelian (
+    tanggal date,
+    nomor int PRIMARY KEY AUTO_INCREMENT,
+    produk_id int NOT NULL REFERENCES produk(id),
+    jumlah int NOT NULL,
+    harga int(30),
+    vendor_id int NOT NULL REFERENCES vendor(nomor)
+);
+
+//isi tabel vendor
+INSERT INTO vendor VALUES 
+(220,'PT Sejahtera','Surabaya',62895785), 
+(221,'PT Gudang Gula','Sidoarjo',629257724), 
+(222,'PT Purnama','Malang',62899485), 
+(223,'PT Sentosa','Jogja',62323785), 
+(224,'PT Jaya','Jakarta',62553442);
+
+//isi tabel pembelian
+INSERT INTO pembelia VALUES
+('2023-09-28', 801, 1, 5, 20000000, 221),
+('2023-10-02', 802, 3, 7, 140000, 222),
+('2023-10-03', 803, 4, 5, 15000, 223),
+('2023-10-10', 804, 5, 1, 400000, 224),
+('2023-10-10', 805, 6, 2, 10000000, 225);
