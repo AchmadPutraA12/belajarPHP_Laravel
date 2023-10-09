@@ -25,7 +25,7 @@ INSERT INTO vendor VALUES
 (224,'PT Jaya','Jakarta',62553442);
 
 //isi tabel pembelian
-INSERT INTO pembelia VALUES
+INSERT INTO pembelian VALUES
 ('2023-09-28', 801, 1, 5, 20000000, 221),
 ('2023-10-02', 802, 3, 7, 140000, 222),
 ('2023-10-03', 803, 4, 5, 15000, 223),

@@ -1,0 +1,291 @@
+//isi data table pelanggan minimal 6 data lagi
+INSERT INTO pelanggan VALUES 
+(5, 'C005', 'Pras', 'L', 'Surabaya', '2000-10-30', 'praset911@gmail.com', 1),
+(6, 'C006', 'Ubed', 'L', 'Gresik', '2002-04-09', 'havid11@gmail.com', 2),
+(7, 'C007', 'Achmad', 'L', 'Surabaya', '2001-09-10', 'Achmad213@gmail.com', 3),
+(8, 'C008', 'Kevin', 'L', 'Lamongan', '2002-10-20', 'kevin@gmail.com', 4),
+(9, 'C009', 'Xacta', 'L', 'Sidoarjo', '2004-12-13', 'xacta@gmail.com', 1),
+(10, 'C010', 'Delyn', 'P', 'Jakarta', '2002-10-25', 'delyn@gmail.com', 1);
+
+//isi data table produk minimal 5 data lagi
+INSERT INTO produk VALUES
+('HP', 'Iphone 11 Pro', 11000000, 12000000, 4, 8, 1),
+('TB', 'Teh Botol Sisri', 3500, 5000, 10, 5, 4),
+('PC', 'PC Intel i5', 8000000, 9500000, 5, 1, 5),
+('ST', 'Sate Ayam Madura', 9000, 15000, 100, 10, 3),
+('GL', 'Gulai', 15000, 25000, 30, 1, 3);
+
+//Worksheet 1 Tugas Mandiri
+//buat table pesanan items
+CREATE TABLE pesanan_items(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    produk_id int not null REFERENCES produk(id),
+    pesanan_id int not null REFERENCES pesanan(id),
+    qty int,
+    harga double
+);
+
+//buat table vendor
+CREATE TABLE vendor(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    nomor varchar(4),
+    nama varchar(40),
+    kota varchar(30),
+    kontak varchar(30)
+);
+
+//buat table pembelian
+CREATE TABLE pembelian(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    tanggal varchar(45),
+    nomor varchar(10),
+    jumlah int (11),
+    harga double,
+    vendor int not null REFERENCES vendor(id)
+);
+
+//worksheet 2
+//Soal 2.1
+//Tampilkan seluruh data produk diurutkan berdasarkan harga_jual mulai dari yang termahal
+SELECT * FROM produk ORDER BY harga_jual DESC;
++------+------------------+------------+------------+------+----------+-----------------+
+| kode | nama             | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+------------------+------------+------------+------+----------+-----------------+
+| HP   | Iphone 11 Pro    |   11000000 |   12000000 |    4 |        8 |               1 |
+| TV02 | Telvisi 40 Inch  |    7000000 |    9600000 |    4 |        1 |               1 |
+| PC   | PC Intel i5      |    8000000 |    9500000 |    5 |        1 |               5 |
+| TV01 | Televisi 21 Inch |    3500000 |    5040000 |    5 |        1 |               1 |
+| k001 | Kulkas 2 Pintu   |    3500000 |    4600000 |    6 |        2 |               1 |
+| M001 | Meja Makan       |     500000 |     600000 |    4 |        3 |               2 |
+| GL   | Gulai            |      15000 |      25000 |   30 |        1 |               3 |
+| ST   | Sate Ayam Madura |       9000 |      15000 |  100 |       10 |               3 |
+| TB   | Teh Botol Sisri  |       3500 |       5000 |   10 |        5 |               4 |
+| TK01 | Teh Kotak        |       3000 |       3500 |    6 |        5 |               4 |
++------+------------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan data kode, nama, tmp_lahir, tgl_lahir dari table pelanggan
+Select kode, nama, tmp_lahir, tgl_lahir from pelanggan;
++------+---------------+------------+------------+
+| kode | nama          | tmp_lahir  | tgl_lahir  |
++------+---------------+------------+------------+
+| C001 | Agung Sedayu  | Solo       | 2010-01-01 |
+| C002 | Pandan Wangi  | Yogyakarta | 1950-01-01 |
+| C003 | Sekar         | Kediri     | 1983-02-02 |
+| C004 | Swandaru Geni | Kediri     | 1981-01-04 |
+| C005 | Pras          | Surabaya   | 2000-10-30 |
+| C006 | Ubed          | Gresik     | 2002-04-09 |
+| C007 | Achmad        | Surabaya   | 2001-09-10 |
+| C008 | Kevin         | Lamongan   | 2002-10-20 |
+| C009 | Xacta         | Sidoarjo   | 2004-12-13 |
+| C010 | Delyn         | Surabaya   | 2002-10-25 |
++------+---------------+------------+------------+
+
+//Tampilkan kode,nama,stok dari table produk yang stok-nya hanya 4
+SELECT kode,nama, stok from produk WHERE stok=4;
++------+-----------------+------+
+| kode | nama            | stok |
++------+-----------------+------+
+| TV02 | Telvisi 40 Inch |    4 |
+| M001 | Meja Makan      |    4 |
+| HP   | Iphone 11 Pro   |    4 |
++------+-----------------+------+
+
+//Tampilkan seluruh data pelanggan yang tempat lahirnya jakarta
+SELECT * from pelanggan WHERE tmp_lahir='jakarta';
++----+------+-------+------+-----------+------------+-----------------+----------+
+| id | kode | nama  | jk   | tmp_lahir | tgl_lahir  | email           | kartu_id |
++----+------+-------+------+-----------+------------+-----------------+----------+
+| 10 | C010 | Delyn | P    | Jakarta   | 2002-10-25 | delyn@gmail.com |        1 |
++----+------+-------+------+-----------+------------+-----------------+----------+
+
+//Tampilkan kode, nama, tmp_lahir, tgl_lahir dari pelanggan diurutkan dari yang paling muda usianya
+SELECT kode, nama, tmp_lahir, tgl_lahir from pelanggan ORDER BY tgl_lahir DESC;
++------+---------------+------------+------------+
+| kode | nama          | tmp_lahir  | tgl_lahir  |
++------+---------------+------------+------------+
+| C001 | Agung Sedayu  | Solo       | 2010-01-01 |
+| C009 | Xacta         | Sidoarjo   | 2004-12-13 |
+| C010 | Delyn         | Jakarta    | 2002-10-25 |
+| C008 | Kevin         | Lamongan   | 2002-10-20 |
+| C006 | Ubed          | Gresik     | 2002-04-09 |
+| C007 | Achmad        | Surabaya   | 2001-09-10 |
+| C005 | Pras          | Surabaya   | 2000-10-30 |
+| C003 | Sekar         | Kediri     | 1983-02-02 |
+| C004 | Swandaru Geni | Kediri     | 1981-01-04 |
+| C002 | Pandan Wangi  | Yogyakarta | 1950-01-01 |
++------+---------------+------------+------------+
+
+//Soal 2.2
+//Tampilkan data produk yang stoknya 3 dan 10
+SELECT * from produk WHERE stok=3 OR stok=10;
++------+-----------------+------------+------------+------+----------+-----------------+
+| kode | nama            | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+-----------------+------------+------------+------+----------+-----------------+
+| TB   | Teh Botol Sisri |       3500 |       5000 |   10 |        5 |               4 |
++------+-----------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan data produk yang harga jualnya kurang dari 5 juta tetapi lebih dari 500 ribu
+SELECT * FROM produk WHERE harga_jual < 5000000 AND harga_jual > 500000;
++------+----------------+------------+------------+------+----------+-----------------+
+| kode | nama           | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+----------------+------------+------------+------+----------+-----------------+
+| k001 | Kulkas 2 Pintu |    3500000 |    4600000 |    6 |        2 |               1 |
+| M001 | Meja Makan     |     500000 |     600000 |    4 |        3 |               2 |
++------+----------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan data produk yang harus segera ditambah stoknya
+SELECT * FROM produk WHERE min_stok > stok;
++------+---------------+------------+------------+------+----------+-----------------+
+| kode | nama          | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+---------------+------------+------------+------+----------+-----------------+
+| HP   | Iphone 11 Pro |   11000000 |   12000000 |    4 |        8 |               1 |
++------+---------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan data pelanggan mulai dari yang paling muda
+SELECT * FROM pelanggan ORDER BY tgl_lahir DESC;
++----+------+---------------+------+------------+------------+---------------------+----------+
+| id | kode | nama          | jk   | tmp_lahir  | tgl_lahir  | email               | kartu_id |
++----+------+---------------+------+------------+------------+---------------------+----------+
+|  1 | C001 | Agung Sedayu  | L    | Solo       | 2010-01-01 | sedayu@gmail.com    |        1 |
+|  9 | C009 | Xacta         | L    | Sidoarjo   | 2004-12-13 | xacta@gmail.com     |        1 |
+| 10 | C010 | Delyn         | P    | Jakarta    | 2002-10-25 | delyn@gmail.com     |        1 |
+|  8 | C008 | Kevin         | L    | Lamongan   | 2002-10-20 | kevin@gmail.com     |        4 |
+|  6 | C006 | Ubed          | L    | Gresik     | 2002-04-09 | havid11@gmail.com   |        2 |
+|  7 | C007 | Achmad        | L    | Surabaya   | 2001-09-10 | Achmad213@gmail.com |        3 |
+|  5 | C005 | Pras          | L    | Surabaya   | 2000-10-30 | praset911@gmail.com |        1 |
+|  3 | C003 | Sekar         | P    | Kediri     | 1983-02-02 | sekar@gmail.com     |        3 |
+|  4 | C004 | Swandaru Geni | L    | Kediri     | 1981-01-04 | swandaru@gmail.com  |        4 |
+|  2 | C002 | Pandan Wangi  | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com     |        2 |
++----+------+---------------+------+------------+------------+---------------------+----------+
+
+//Tampilkan data pelanggan yang lahirnya di Jakarta dan gendernya perempuan
+SELECT * FROM pelanggan WHERE tmp_lahir='jakarta' AND jk='P';
++----+------+-------+------+-----------+------------+-----------------+----------+
+| id | kode | nama  | jk   | tmp_lahir | tgl_lahir  | email           | kartu_id |
++----+------+-------+------+-----------+------------+-----------------+----------+
+| 10 | C010 | Delyn | P    | Jakarta   | 2002-10-25 | delyn@gmail.com |        1 |
++----+------+-------+------+-----------+------------+-----------------+----------+
+
+//Tampilkan data pelanggan yang ID nya 2, 4 dan 6
+SELECT * from pelanggan WHERE id IN (2,4,6);
++----+------+---------------+------+------------+------------+--------------------+----------+
+| id | kode | nama          | jk   | tmp_lahir  | tgl_lahir  | email              | kartu_id |
++----+------+---------------+------+------------+------------+--------------------+----------+
+|  2 | C002 | Pandan Wangi  | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com    |        2 |
+|  4 | C004 | Swandaru Geni | L    | Kediri     | 1981-01-04 | swandaru@gmail.com |        4 |
+|  6 | C006 | Ubed          | L    | Gresik     | 2002-04-09 | havid11@gmail.com  |        2 |
++----+------+---------------+------+------------+------------+--------------------+----------+
+
+//Tampilkan data produk yang harganya antara 500 ribu sampai 6 juta
+SELECT * FROM produk WHERE harga_jual >= 500000 AND harga_jual<= 6000000;
++------+------------------+------------+------------+------+----------+-----------------+
+| kode | nama             | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+------------------+------------+------------+------+----------+-----------------+
+| TV01 | Televisi 21 Inch |    3500000 |    5040000 |    5 |        1 |               1 |
+| k001 | Kulkas 2 Pintu   |    3500000 |    4600000 |    6 |        2 |               1 |
+| M001 | Meja Makan       |     500000 |     600000 |    4 |        3 |               2 |
++------+------------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan produk yang kode awalnya huruf K dan huruf M
+SELECT * FROM produk WHERE kode LIKE 'K%' OR kode LIKE 'M%';
++------+----------------+------------+------------+------+----------+-----------------+
+| kode | nama           | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+----------------+------------+------------+------+----------+-----------------+
+| k001 | Kulkas 2 Pintu |    3500000 |    4600000 |    6 |        2 |               1 |
+| M001 | Meja Makan     |     500000 |     600000 |    4 |        3 |               2 |
++------+----------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan produk yang kode awalnya bukan huruf M
+SELECT * FROM produk WHERE kode LIKE 'M%';
++------+------------+------------+------------+------+----------+-----------------+
+| kode | nama       | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+------------+------------+------------+------+----------+-----------------+
+| M001 | Meja Makan |     500000 |     600000 |    4 |        3 |               2 |
++------+------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan produk-produk televisi
+SELECT * FROM produk WHERE nama LIKE 'Televisi%';
++------+------------------+------------+------------+------+----------+-----------------+
+| kode | nama             | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+------------------+------------+------------+------+----------+-----------------+
+| TV01 | Televisi 21 Inch |    3500000 |    5040000 |    5 |        1 |               1 |
+| TV02 | Televisi 40 Inch |    7000000 |    9600000 |    4 |        1 |               1 |
++------+------------------+------------+------------+------+----------+-----------------+
+
+
+//Tampilkan pelanggan mengandung huruf 'S'
+SELECT * FROM pelanggan WHERE nama LIKE 'S%';
++----+------+---------------+------+-----------+------------+--------------------+----------+
+| id | kode | nama          | jk   | tmp_lahir | tgl_lahir  | email              | kartu_id |
++----+------+---------------+------+-----------+------------+--------------------+----------+
+|  3 | C003 | Sekar         | P    | Kediri    | 1983-02-02 | sekar@gmail.com    |        3 |
+|  4 | C004 | Swandaru Geni | L    | Kediri    | 1981-01-04 | swandaru@gmail.com |        4 |
++----+------+---------------+------+-----------+------------+--------------------+----------+
+
+//Tampilkan pelanggan yang lahirnya bukan di Jakarta dan mengandung huruf ‘yo‘
+SELECT * FROM pelanggan WHERE NOT tmp_lahir = 'Jakarta' AND tmp_lahir LIKE 'Yo%';
++----+------+--------------+------+------------+------------+-----------------+----------+
+| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email           | kartu_id |
++----+------+--------------+------+------------+------------+-----------------+----------+
+|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com |        2 |
++----+------+--------------+------+------------+------------+-----------------+----------+
+
+//Tampilkan pelanggan yang karakter huruf ke – 2 nya adalah A
+SELECT * FROM pelanggan WHERE nama LIKE '_A%';
++----+------+--------------+------+------------+------------+-----------------+----------+
+| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email           | kartu_id |
++----+------+--------------+------+------------+------------+-----------------+----------+
+|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com |        2 |
+|  9 | C009 | Xacta        | L    | Sidoarjo   | 2004-12-13 | xacta@gmail.com |        1 |
++----+------+--------------+------+------------+------------+-----------------+----------+
+
+
+//Tampilkan 2 data produk termahal
+SELECT *FROM produk ORDER BY harga_beli DESC LIMIT 2;
++------+---------------+------------+------------+------+----------+-----------------+
+| kode | nama          | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+---------------+------------+------------+------+----------+-----------------+
+| HP   | Iphone 11 Pro |   11000000 |   12000000 |    4 |        8 |               1 |
+| PC   | PC Intel i5   |    8000000 |    9500000 |    5 |        1 |               5 |
++------+---------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan produk yang paling murah
+SELECT *FROM produk ORDER BY harga_jual ASC LIMIT 1;
++------+-----------+------------+------------+------+----------+-----------------+
+| kode | nama      | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+-----------+------------+------------+------+----------+-----------------+
+| TK01 | Teh Kotak |       3000 |       3500 |    6 |        5 |               4 |
++------+-----------+------------+------------+------+----------+-----------------+
+
+//Tampilkan produk yang stoknya paling banyak
+SELECT * FROM produk ORDER BY stok DESC LIMIT 1;
++------+------------------+------------+------------+------+----------+-----------------+
+| kode | nama             | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+------------------+------------+------------+------+----------+-----------------+
+| ST   | Sate Ayam Madura |       9000 |      15000 |  100 |       10 |               3 |
++------+------------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan dua produk yang stoknya paling sedikit
+SELECT * FROM produk ORDER BY stok ASC LIMIT 2;
++------+------------------+------------+------------+------+----------+-----------------+
+| kode | nama             | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+------------------+------------+------------+------+----------+-----------------+
+| TV02 | Televisi 40 Inch |    7000000 |    9600000 |    4 |        1 |               1 |
+| M001 | Meja Makan       |     500000 |     600000 |    4 |        3 |               2 |
++------+------------------+------------+------------+------+----------+-----------------+
+
+//Tampilkan pelanggan yang paling muda
+SELECT * FROM pelanggan ORDER BY tgl_lahir DESC LIMIT 1;
++----+------+--------------+------+-----------+------------+------------------+----------+
+| id | kode | nama         | jk   | tmp_lahir | tgl_lahir  | email            | kartu_id |
++----+------+--------------+------+-----------+------------+------------------+----------+
+|  1 | C001 | Agung Sedayu | L    | Solo      | 2010-01-01 | sedayu@gmail.com |        1 |
++----+------+--------------+------+-----------+------------+------------------+----------+
+
+//Tampilkan pelanggan yang paling tua
+SELECT * FROM pelanggan ORDER BY tgl_lahir ASC LIMIT 1;
++----+------+--------------+------+------------+------------+-----------------+----------+
+| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email           | kartu_id |
++----+------+--------------+------+------------+------------+-----------------+----------+
+|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com |        2 |
++----+------+--------------+------+------------+------------+-----------------+----------+
