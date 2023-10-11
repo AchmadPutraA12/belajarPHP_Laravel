@@ -1,0 +1,178 @@
+//Berapa jumlah total stok semua produk yang harga jualnya dibawah 10rb
+select sum(stok) As total_stok from produk where harga_jual < 10000;
++------------+
+| total_stok |
++------------+
+|         16 |
++------------+
+
+//Ada Berapa produk yang mempunyai kode awak K
+select * from produk where kode like '%K%';
++------+------+----------------+------------+------------+------+----------+-----------------+
+| id   | kode | nama           | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
++------+------+----------------+------------+------------+------+----------+-----------------+
+|    3 | k001 | Kulkas 2 Pintu |    3500000 |    4600000 |    6 |        2 |               1 |
+|    5 | TK01 | Teh Kotak      |       3000 |       3500 |    6 |        5 |               4 |
++------+------+----------------+------------+------------+------+----------+-----------------+
+
+//Berapa harga jual rata-rata produk yang diatas 1 juta
+SELECT AVG(harga_jual) AS rata_rata_harga FROM produk WHERE harga_jual > 1000000;
++-----------------+
+| rata_rata_harga |
++-----------------+
+|         8148000 |
++-----------------+
+
+//Tampilkan jumlah stok yang paling besar
+SELECT Max(stok) As total_stok from produk;
++------------+
+| total_stok |
++------------+
+|        100 |
++------------+
+
+//Ada berapa produk yang stoknya kurang dari minimal stok
+select count(stok) As stok_sedikit from produk where stok < min_stok;
++--------------+
+| stok_sedikit |
++--------------+
+|            1 |
++--------------+
+
+//Berapa total asset dari keseluruhan produk
+select count(nama) As total_aset from produk;
++------------+
+| total_aset |
++------------+
+|         10 |
++------------+
+//Tampilkan data pelanggan: id, nama, umur dan kategori umur : jika umur < 17 → ‘muda’ , 17-55 → ‘Dewasa’, selainnya ‘Tua’
+SELECT id, nama, TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) as umur,
+  CASE 
+    WHEN YEAR(NOW())-YEAR(tgl_lahir)< 17 THEN 'Muda'
+    WHEN YEAR(NOW())-YEAR(tgl_lahir)< 55 THEN 'Dewasa'
+    ELSE 'Tua'
+  END as kategori_umur
+FROM pelanggan;
++----+---------------+------+---------------+
+| id | nama          | umur | kategori_umur |
++----+---------------+------+---------------+
+|  1 | Agung Sedayu  |   13 | Muda          |
+|  2 | Pandan Wangi  |   73 | Tua           |
+|  3 | Sekar         |   40 | Dewasa        |
+|  4 | Swandaru Geni |   42 | Dewasa        |
+|  5 | Pras          |   22 | Dewasa        |
+|  6 | Ubed          |   21 | Dewasa        |
+|  7 | Achmad        |   22 | Dewasa        |
+|  8 | Kevin         |   20 | Dewasa        |
+|  9 | Xacta         |   18 | Dewasa        |
+| 10 | Delyn         |   20 | Dewasa        |
++----+---------------+------+---------------+
+
+//Tampilkan data produk: id, kode, nama, dan bonus untuk kode ‘TV01’ →’DVD Player’ , ‘K001’ → ‘Rice Cooker’ selain dari diatas ‘Tidak Ada’
+SELECT id, kode, nama,
+CASE WHEN kode = 'TV01' THEN 'DVD PLAYER' 
+WHEN kode = 'K001' THEN 'RICE COOKCER' 
+ELSE 'Tidak Ada' END as 'Bonus' 
+FROM produk;
++------+------+------------------+--------------+
+| id   | kode | nama             | Bonus        |
++------+------+------------------+--------------+
+|    1 | TV01 | Televisi 21 Inch | DVD PLAYER   |
+|    2 | TV02 | Televisi 40 Inch | Tidak Ada    |
+|    3 | k001 | Kulkas 2 Pintu   | RICE COOKCER |
+|    4 | M001 | Meja Makan       | Tidak Ada    |
+|    5 | TK01 | Teh Kotak        | Tidak Ada    |
+|    6 | HP   | Iphone 11 Pro    | Tidak Ada    |
+|    7 | TB   | Teh Botol Sisri  | Tidak Ada    |
+|    8 | PC   | PC Intel i5      | Tidak Ada    |
+|    9 | ST   | Sate Ayam Madura | Tidak Ada    |
+|   10 | GL   | Gulai            | Tidak Ada    |
++------+------+------------------+--------------+
+
+//Tampilkan data statistik jumlah tempat lahir pelanggan
+SELECT tmp_lahir, COUNT(tmp_lahir) as jumlah_pelanggan FROM pelanggan GROUP BY tmp_lahir;
++------------+------------------+
+| tmp_lahir  | jumlah_pelanggan |
++------------+------------------+
+| Solo       |                1 |
+| Yogyakarta |                1 |
+| Kediri     |                2 |
+| Surabaya   |                2 |
+| Gresik     |                1 |
+| Lamongan   |                1 |
+| Sidoarjo   |                1 |
+| Jakarta    |                1 |
++------------+------------------+
+
+//Tampilkan jumlah statistik produk berdasarkan jenis produk
+SELECT jenis_produk_id, COUNT(*) as jumlah_produk FROM produk GROUP BY jenis_produk_id;
++-----------------+---------------+
+| jenis_produk_id | jumlah_produk |
++-----------------+---------------+
+|               1 |             4 |
+|               2 |             1 |
+|               4 |             2 |
+|               5 |             1 |
+|               3 |             2 |
++-----------------+---------------+
+
+//Tampilkan data pelanggan yang usianya dibawah rata usia pelanggan
+SELECT id, nama, YEAR(NOW())-YEAR(tgl_lahir)as umur FROM pelanggan WHERE YEAR(NOW())-YEAR(tgl_lahir) < (SELECT AVG(YEAR(NOW())-YEAR(tgl_lahir)) FROM pelanggan);
++----+--------------+------+
+| id | nama         | umur |
++----+--------------+------+
+|  1 | Agung Sedayu |   13 |
+|  5 | Pras         |   23 |
+|  6 | Ubed         |   21 |
+|  7 | Achmad       |   22 |
+|  8 | Kevin        |   21 |
+|  9 | Xacta        |   19 |
+| 10 | Delyn        |   21 |
++----+--------------+------+
+
+//Tampilkan data produk yang harganya diatas rata-rata harga produk
+SELECT id, nama, harga_jual FROM produk WHERE harga_jual > (SELECT AVG(harga_jual) FROM produk);
++------+------------------+------------+
+| id   | nama             | harga_jual |
++------+------------------+------------+
+|    1 | Televisi 21 Inch |    5040000 |
+|    2 | Televisi 40 Inch |    9600000 |
+|    3 | Kulkas 2 Pintu   |    4600000 |
+|    6 | Iphone 11 Pro    |   12000000 |
+|    8 | PC Intel i5      |    9500000 |
++------+------------------+------------+
+
+//Tampilkan data pelanggan yang memiliki kartu dimana iuran tahunan kartu diatas 90rb
+SELECT p.*, k.* FROM pelanggan p INNER JOIN kartu k ON p.kartu_id = k.id WHERE k.iuran > 90000;
++----+------+--------------+------+------------+------------+---------------------+----------+----+------+---------------+--------+----------+
+| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email               | kartu_id | id | kode | nama          | diskon | iuran    |
++----+------+--------------+------+------------+------------+---------------------+----------+----+------+---------------+--------+----------+
+|  1 | C001 | Agung Sedayu | L    | Solo       | 2010-01-01 | sedayu@gmail.com    |        1 |  1 | Gold | Gold Utama    |   0.05 |   100000 |
+|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com     |        2 |  2 | Plat | Platinum Jaya |    0.1 |  1500000 |
+|  5 | C005 | Pras         | L    | Surabaya   | 2000-10-30 | praset911@gmail.com |        1 |  1 | Gold | Gold Utama    |   0.05 |   100000 |
+|  6 | C006 | Ubed         | L    | Gresik     | 2002-04-09 | havid11@gmail.com   |        2 |  2 | Plat | Platinum Jaya |    0.1 |  1500000 |
+|  9 | C009 | Xacta        | L    | Sidoarjo   | 2004-12-13 | xacta@gmail.com     |        1 |  1 | Gold | Gold Utama    |   0.05 |   100000 |
+| 10 | C010 | Delyn        | P    | Jakarta    | 2002-10-25 | delyn@gmail.com     |        1 |  1 | Gold | Gold Utama    |   0.05 |   100000 |
+| 11 | C011 | Putri        | P    | Surabaya   | 2023-10-10 | putri@gmail.com     |        5 |  5 | VVIP | Citra         |      4 | 10000000 |
++----+------+--------------+------+------------+------------+---------------------+----------+----+------+---------------+--------+----------+
+
+//Tampilkan statistik data produk dimana harga produknya dibawah rata-rata harga produk secara keseluruhan
+SELECT nama, harga_jual FROM produk WHERE harga_jual < (SELECT AVG(harga_jual) FROM produk);
++------------------+------------+
+| nama             | harga_jual |
++------------------+------------+
+| Meja Makan       |     600000 |
+| Teh Kotak        |       3500 |
+| Teh Botol Sisri  |       5000 |
+| Sate Ayam Madura |      15000 |
+| Gulai            |      25000 |
++------------------+------------+
+
+//Tampilkan data pelanggan yang memiliki kartu dimana diskon kartu yang diberikan diatas 3%
+SELECT p.*, k.* FROM pelanggan p INNER JOIN kartu k ON p.kartu_id = k.id WHERE k.diskon > 3;
++----+------+-------+------+-----------+------------+-----------------+----------+----+------+-------+--------+----------+
+| id | kode | nama  | jk   | tmp_lahir | tgl_lahir  | email           | kartu_id | id | kode | nama  | diskon | iuran    |
++----+------+-------+------+-----------+------------+-----------------+----------+----+------+-------+--------+----------+
+| 11 | C011 | Putri | P    | Surabaya  | 2023-10-10 | putri@gmail.com |        5 |  5 | VVIP | Citra |      4 | 10000000 |
++----+------+-------+------+-----------+------------+-----------------+----------+----+------+-------+--------+----------+

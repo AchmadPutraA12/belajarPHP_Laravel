@@ -196,7 +196,7 @@ SELECT * FROM produk WHERE kode LIKE 'K%' OR kode LIKE 'M%';
 +------+----------------+------------+------------+------+----------+-----------------+
 
 //Tampilkan produk yang kode awalnya bukan huruf M
-SELECT * FROM produk WHERE kode LIKE 'M%';
+SELECT * FROM produk WHERE kode NOT LIKE '%M%';
 +------+------------+------------+------------+------+----------+-----------------+
 | kode | nama       | harga_beli | harga_jual | stok | min_stok | jenis_produk_id |
 +------+------------+------------+------------+------+----------+-----------------+
@@ -222,13 +222,13 @@ SELECT * FROM pelanggan WHERE nama LIKE 'S%';
 |  4 | C004 | Swandaru Geni | L    | Kediri    | 1981-01-04 | swandaru@gmail.com |        4 |
 +----+------+---------------+------+-----------+------------+--------------------+----------+
 
-//Tampilkan pelanggan yang lahirnya bukan di Jakarta dan mengandung huruf ‘yo‘
-SELECT * FROM pelanggan WHERE NOT tmp_lahir = 'Jakarta' AND tmp_lahir LIKE 'Yo%';
-+----+------+--------------+------+------------+------------+-----------------+----------+
-| id | kode | nama         | jk   | tmp_lahir  | tgl_lahir  | email           | kartu_id |
-+----+------+--------------+------+------------+------------+-----------------+----------+
-|  2 | C002 | Pandan Wangi | P    | Yogyakarta | 1950-01-01 | wangi@gmail.com |        2 |
-+----+------+--------------+------+------------+------------+-----------------+----------+
+//Tampilkan pelanggan yang lahirnya bukan di Jakarta dan mengandung huruf ‘ru‘
+SELECT * FROM pelanggan WHERE NOT tmp_lahir = 'Jakarta' AND nama LIKE 'ru%';
++----+------+---------------+------+-----------+------------+--------------------+----------+
+| id | kode | nama          | jk   | tmp_lahir | tgl_lahir  | email              | kartu_id |
++----+------+---------------+------+-----------+------------+--------------------+----------+
+|  4 | C004 | Swandaru Geni | L    | Kediri    | 1981-01-04 | swandaru@gmail.com |        4 |
++----+------+---------------+------+-----------+------------+--------------------+----------+
 
 //Tampilkan pelanggan yang karakter huruf ke – 2 nya adalah A
 SELECT * FROM pelanggan WHERE nama LIKE '_A%';
