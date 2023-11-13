@@ -9,7 +9,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <a href="{{ url('admin/jenis_produk/create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -17,24 +17,33 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kartu</th>
+                            <th>Nama</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kartu</th>
+                            <th>Nama</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @php
-                            $no = 1; 
+                            $no = 1;
                         @endphp
                         @foreach ($jenis_produk as $k)
-                        <tr>
-                            <th>{{ $no++ }}</th>
-                            <td>{{ $k->nama }}</td>
-                        </tr>
+                            <tr>
+                                <th>{{ $no++ }}</th>
+                                <td>{{ $k->nama }}</td>
+                                <td>
+                                    <div class="text-center">
+                                        <a href="{{ url('admin/jenis_produk/edit/'.$k->id) }}" class="btn btn-sm btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

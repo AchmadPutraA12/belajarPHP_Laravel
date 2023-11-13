@@ -9,7 +9,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <a href="{{ route('pelanggan.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,6 +24,7 @@
                             <th>Tanggal Lahir</th>
                             <th>Email</th>
                             <th>Kartu</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -36,6 +37,7 @@
                             <th>Tanggal Lahir</th>
                             <th>Email</th>
                             <th>Kartu</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -52,6 +54,7 @@
                                 <td>{{ $pl->tgl_lahir }}</td>
                                 <td>{{ $pl->email }}</td>
                                 <td>{{ $pl->kartu->nama }}</td>
+                                <td>aksi</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -9,7 +9,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <a href="{{ url('admin/produk/create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,6 +24,8 @@
                             <th>Stok</th>
                             <th>Minimal Stok</th>
                             <th>Jenis Produk</th>
+                            <th>Detail</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -36,6 +38,8 @@
                             <th>Stok</th>
                             <th>Minimal Stok</th>
                             <th>Jenis Produk</th>
+                            <th>Detail</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -52,6 +56,48 @@
                                 <td>{{ $pr->stok }}</td>
                                 <td>{{ $pr->min_stok }}</td>
                                 <td>{{ $pr->jenis }}</td>
+                                <td>
+                                    <div class="text-center">
+                                        <a href="{{ url('admin/produk/show/' . $pr->id) }}" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <a href="{{ url('admin/produk/edit/' . $pr->id) }}" class="btn btn-sm btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                            data-target="#exampleModal{{ $pr->id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal{{ $pr->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        apakah anda yakin akan menghapus data {{ $pr->nama }} ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <a href="{{ url('admin/produk/delete/'.$pr->id) }}" type="button" class="btn btn-primary">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

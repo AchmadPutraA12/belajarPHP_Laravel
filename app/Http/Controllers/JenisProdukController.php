@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jenis_produk;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class JenisProdukController extends Controller
@@ -23,6 +24,7 @@ class JenisProdukController extends Controller
     public function create()
     {
         //
+        return view('admin.jenis.create');
     }
 
     /**
@@ -30,7 +32,15 @@ class JenisProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jenis_produk = Jenis_produk::find($request->id);
+        $jenis_produk->nama = $request->nama;
+        $jenis_produk->save();
+        return redirect('admin/jenis_produk');
+        //tambah data eloquent
+        $jenis_produk = new Jenis_produk;
+        $jenis_produk->nama = $request->nama;
+        $jenis_produk->save();
+        return redirect('admin/jenis_produk');
     }
 
     /**
@@ -47,6 +57,8 @@ class JenisProdukController extends Controller
     public function edit(string $id)
     {
         //
+        $jenis_produk = Jenis_produk::all()->where('id', $id);
+        return view('admin.jenis.edit', compact('jenis_produk'));
     }
 
     /**
@@ -55,6 +67,10 @@ class JenisProdukController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $jenis_produk = Jenis_produk::find($request->id);
+        $jenis_produk->nama = $request->nama;
+        $jenis_produk->save();
+        return redirect('admin/jenis_produk');
     }
 
     /**
