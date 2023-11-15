@@ -1,6 +1,5 @@
 @extends('admin.layout.appadmin')
 @section('content')
-    <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
         For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
@@ -15,6 +14,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
+
                         <tr>
                             <th>No</th>
                             <th>Kode</th>
@@ -25,6 +25,7 @@
                             <th>Email</th>
                             <th>Kartu</th>
                             <th>Action</th>
+
                         </tr>
                     </thead>
                     <tfoot>
@@ -41,12 +42,10 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @php
-                            $no = 1;
-                        @endphp
+                        @php $no=1 @endphp
                         @foreach ($pelanggan as $pl)
                             <tr>
-                                <th>{{ $no++ }}</th>
+                                <td>{{ $no++ }}</td>
                                 <td>{{ $pl->kode }}</td>
                                 <td>{{ $pl->nama }}</td>
                                 <td>{{ $pl->jk }}</td>
@@ -54,9 +53,14 @@
                                 <td>{{ $pl->tgl_lahir }}</td>
                                 <td>{{ $pl->email }}</td>
                                 <td>{{ $pl->kartu->nama }}</td>
-                                <td>aksi</td>
+                                <td>
+                                    <a href="{{ route('pelanggan.edit', $pl->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ route('pelanggan.destroy', $pl->id) }}" class="btn btn-sm btn-danger"
+                                        data-confirm-delete="true">Delete</a>
+                                </td>
                             </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>

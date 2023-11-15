@@ -1,131 +1,290 @@
 @extends('admin.layout.appadmin')
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ti-icons@0.1.2/css/themify-icons.css">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 wow fadeIn">
-                <div class="card border-0 shadow">
-                    <img src="https://www.bootdey.com/img/Content/avatar/avatar6.png" alt="...">
-                    <div class="card-body p-1-9 p-xl-5">
-                        <div class="mb-4">
-                            <h3 class="h4 mb-0">Dakota Johnston</h3>
-                            <span class="text-primary">CEO &amp; Founder</span>
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <a href="{{ url('admin/produk') }}">
+                    <div class="card-body">
+
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Data Produk</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $produk }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <!-- <i class="fab fa-product-hunt"></i> -->
+                            </div>
                         </div>
-                        <ul class="list-unstyled mb-4">
-                            <li class="mb-3"><a href="#!"><i
-                                        class="far fa-envelope display-25 me-3 text-secondary"></i>dakota@gmail.com</a></li>
-                            <li class="mb-3"><a href="#!"><i
-                                        class="fas fa-mobile-alt display-25 me-3 text-secondary"></i>+012 (345) 6789</a>
-                            </li>
-                            <li><a href="#!"><i class="fas fa-map-marker-alt display-25 me-3 text-secondary"></i>205
-                                    Main Street, USA</a></li>
-                        </ul>
-                        <ul class="social-icon-style2 ps-0">
-                            <li><a href="#!" class="rounded-3"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#!" class="rounded-3"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#!" class="rounded-3"><i class="fab fa-youtube"></i></a></li>
-                            <li><a href="#!" class="rounded-3"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Jenis Produk</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jenis_produk }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
-                <div class="ps-lg-1-6 ps-xl-5">
-                    <div class="mb-5 wow fadeIn">
-                        <div class="text-start mb-1-6 wow fadeIn">
-                            <h2 class="h1 mb-0 text-primary">#About Me</h2>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pelanggan
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $pelanggan }}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                            distribution of letters, as opposed to using 'Content here, content here', making it look like
-                            readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
-                            their default model text, and a search for 'lorem ipsum' will uncover many web sites still in
-                            their infancy.</p>
-                        <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority
-                            have suffered alteration in some form, by injected humour, or randomised words which don't look
-                            even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure
-                            there isn't anything embarrassing hidden in the middle of text.</p>
-                    </div>
-                    <div class="mb-5 wow fadeIn">
-                        <div class="text-start mb-1-6 wow fadeIn">
-                            <h2 class="mb-0 text-primary">#Education</h2>
-                        </div>
-                        <div class="row mt-n4">
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-bookmark-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">Education</h3>
-                                        <p class="mb-0">University of defgtion, fecat complete ME of synage</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-pencil-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">Career Start</h3>
-                                        <p class="mb-0">After complete engineer join HU Signage Ltd as a project manager
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xl-4 mt-4">
-                                <div class="card text-center border-0 rounded-3">
-                                    <div class="card-body">
-                                        <i class="ti-medall-alt icon-box medium rounded-3 mb-4"></i>
-                                        <h3 class="h5 mb-3">Experience</h3>
-                                        <p class="mb-0">About 20 years of experience and professional in signage</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                         </div>
                     </div>
-                    <div class="wow fadeIn">
-                        <div class="text-start mb-1-6 wow fadeIn">
-                            <h2 class="mb-0 text-primary">#Skills &amp; Experience</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Kartu </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $kartu }}</div>
                         </div>
-                        <p class="mb-4">Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                            default model text, and a search for 'lorem ipsum' will uncover many web sites still in their
-                            infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
-                            purpose.</p>
-                        <div class="progress-style1">
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6 fw-bold">Wind Turbines</div>
-                                    <div class="col-6 text-end">70%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress rounded-3 mb-4">
-                                <div class="animated custom-bar progress-bar slideInLeft" style="width:70%"
-                                    aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6 fw-bold">Solar Panels</div>
-                                    <div class="col-6 text-end">90%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress rounded-3 mb-4">
-                                <div class="animated custom-bar progress-bar bg-secondary slideInLeft" style="width:90%"
-                                    aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6 fw-bold">Hybrid Energy</div>
-                                    <div class="col-6 text-end">80%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress rounded-3">
-                                <div class="animated custom-bar progress-bar bg-dark slideInLeft" style="width:80%"
-                                    aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row">
+
+        <div class="col-xl-8 col-lg-7">
+
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Data Nama produk dan Harga Jual</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myArea"></canvas>
+                    </div>
+                    <hr>
+                    Chart data dari produk dengan total produk {{ $produk }}
+
+                </div>
+            </div>
+
+            <!-- Bar Chart -->
+
+
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Chart perbandingan Gender pada pelanggan </h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4">
+                        <canvas id="myPie"></canvas>
+                    </div>
+                    <hr>
+                    Berikut ini adalah perbandingan gender dari pelanggan dengan total {{ $pelanggan }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Pie Chart Example
+        // var ctx = document.getElementById("myPieChart");
+        // var myPieChart = new Chart(ctx, {
+        var label = [
+            @foreach ($jenis_kelamin as $jk)
+                '{{ $jk->jk }}',
+            @endforeach
+        ];
+        var data2 = [
+            @foreach ($jenis_kelamin as $jk)
+                {{ $jk->jumlah }},
+            @endforeach
+        ];
+        document.addEventListener("DOMContentLoaded", () => {
+            new Chart(document.querySelector('#myPie'), {
+
+                type: 'doughnut',
+                data: {
+                    labels: label,
+                    datasets: [{
+                        data: data2,
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        caretPadding: 10,
+                    },
+                    legend: {
+                        display: false
+                    },
+                    cutoutPercentage: 80,
+                },
+            });
+        });
+    </script>
+    <script>
+        // Area Chart Example
+        // var ctx = document.getElementById("myAreaChart");
+        // var myLineChart = new Chart(ctx, {
+        var lbl = [
+            @foreach ($hitung_harga as $hitung)
+                '{{ $hitung->nama }}',
+            @endforeach
+        ];
+        var data = [
+            @foreach ($hitung_harga as $hitung)
+                {{ $hitung->harga_jual }},
+            @endforeach
+        ];
+        document.addEventListener("DOMContentLoaded", () => {
+            new Chart(document.querySelector('#myArea'), {
+
+                type: 'line',
+                data: {
+                    labels: lbl,
+                    datasets: [{
+                        label: "Harga Jual",
+                        lineTension: 0.3,
+                        backgroundColor: "rgba(78, 115, 223, 0.05)",
+                        borderColor: "rgba(78, 115, 223, 1)",
+                        pointRadius: 3,
+                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHoverRadius: 3,
+                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHitRadius: 10,
+                        pointBorderWidth: 2,
+                        data: data,
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 25,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'date'
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                maxTicksLimit: 5,
+                                padding: 10,
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return 'Rp.' + number_format(value);
+                                }
+                            },
+                            gridLines: {
+                                color: "rgb(234, 236, 244)",
+                                zeroLineColor: "rgb(234, 236, 244)",
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 14,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function(tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': Rp.' + number_format(tooltipItem.yLabel);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
